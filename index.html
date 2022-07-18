@@ -22,7 +22,17 @@
         pumpkin.draw(myCanvas.getContext("2d"));
         const microphone = new Microphone(8192);
         console.log(microphone);
-        devspeek();
+
+        let count = 1;
+        setInterval(function () {
+          count++;
+          if (count > 2) {
+            clearInterval();
+          } else {
+            devspeek();
+          }
+        }, 1);
+
         setInterval(function () {
           if (microphone.initialized) {
             const openness = microphone.getVolume() * 5.5;
