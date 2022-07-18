@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <script src="microphone.js"></script>
+    <script src="pumpkin.js"></script>
+    <script>
+      function main() {
+        myCanvas.width = window.innerWidth;
+        myCanvas.height = window.innerHeight;
+
+        const pumpkin = new Pumpkin(
+          myCanvas.width / 2,
+          myCanvas.height / 2,
+          Math.min(myCanvas.width, myCanvas.height) * 0.4
+        );
+        pumpkin.draw(myCanvas.getContext("2d"));
+        const microphone = new Microphone(8192);
+        console.log(microphone);
+        setInterval(function () {
+          if (microphone.initialized) {
+            const openness = microphone.getVolume() * 5.5;
+            myCanvas
+              .getContext("2d")
+              .clearRect(0, 0, myCanvas.width, myCanvas.height);
+            pumpkin.draw(myCanvas.getContext("2d"), openness);
+          }
+        }, 100);
+      }
+    </script>
+  </head>
+  <body style="margin: 0" onload="main()">
+    <canvas id="myCanvas"></canvas>
+  </body>
+</html>
