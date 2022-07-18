@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
+    <script src="speeker.js"></script>
     <script src="microphone.js"></script>
     <script src="pumpkin.js"></script>
     <script>
@@ -21,6 +22,7 @@
         pumpkin.draw(myCanvas.getContext("2d"));
         const microphone = new Microphone(8192);
         console.log(microphone);
+        devspeek();
         setInterval(function () {
           if (microphone.initialized) {
             const openness = microphone.getVolume() * 5.5;
